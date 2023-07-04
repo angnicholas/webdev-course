@@ -1,8 +1,15 @@
-# Example Set 2B. Local Library Backend Walkthrough
+# Module 5. Backend Code-along
 
-Follow these steps to build the Local Library site in a fresh directory. The finished code, for reference, is located in the ```example2-locallibrary/``` folder which you can refer to if you get stuck.
+Now, with the knowledge of how the backend is structured, we can build the Local Library site in a fresh directory (or build something totally new, it's up to you)! You can always refer to the local library code in ```example2-locallibrary/``` if you get stuck.
 
-## 1 Modelling (Paper work)
+## Workflow Overview
+- Step 1. Define your data model 
+- Step 2. Define your API endpoints and expected behaviour
+- Step 3. Implement data model in models.py
+- Step 4. Implement APIs in views.py + urls.py
+- Step 5. Test using Postman or Requests
+
+## 1 Design Work
 
 1. Define a data model for a Library consisting of 2 objects: Books and Authors, with a foreign-key relationship.
 
@@ -42,7 +49,7 @@ Follow these steps to build the Local Library site in a fresh directory. The fin
 11. Create a requirements.txt file by using ```pip freeze``` or typing in manualy.
 
 
-## Data Modelling in Code
+## Implementation of Data Model
 
 1. In ```book/models.py``` create a ```book``` object with the following fields:
 - ```title:String```
@@ -53,7 +60,16 @@ Follow these steps to build the Local Library site in a fresh directory. The fin
 - ```name:String```
 - ```age:int```
 
-## Endpoint 
+## Implementation of API Endpoints 
 
-1. Implement the endpoints.
+1. Implement the endpoints using any method you fancy
+
+## Testing
+Test all endpoints using Postman or python requests. Send both legal and illegal requests. Observe what the response is in both cases.
+
+## Points of Discussion
+
+- Do you notice any potential issues with your design (in terms of API endpoint design and data modelling)?
+- How do you think the application might need to change as your application evolves (eg. new fields need to be added, data model changes, etc.)?  
+- Does your application sufficiently model the real world and fulfil the user requirements?
 
