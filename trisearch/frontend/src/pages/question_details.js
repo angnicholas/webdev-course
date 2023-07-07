@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import CircularProgress from "@mui/material/CircularProgress";
 
 
-const JournalEntry = (props) => {
+const DetailPage = (props) => {
   const location = useLocation();
   const state = location.state;
   const title = state.title;
@@ -21,16 +21,16 @@ const JournalEntry = (props) => {
       return resData;
     };
     console.log(state.id);
-    getFromApi(`journalentry/${state.id}/`, setContent, setLoading, resDataToContent);
+    getFromApi(`question/${state.id}/`, setContent, setLoading, resDataToContent);
   }, []);
 
 
   return (
     <div>
-      <h1>{content['title']}</h1>
-      <p>{content['text']}</p>
+      <h1>{`${content['part']} ${content['year']} Sect${content['section']} ${content['number']}`}</h1>
+      <p>{content['hint']}</p>
     </div>
   );
 }
 
-export default JournalEntry;
+export default DetailPage;

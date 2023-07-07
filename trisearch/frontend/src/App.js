@@ -2,9 +2,8 @@ import logo from './logo.svg';
 import React, { Component }  from 'react';
 import './App.css';
 // import LoginPage from "./pages/login";
-import PatientPage from "./pages/patientpage";
-import JournalPage from "./pages/journaloverview";
-import JournalEntry from "./pages/journalentry";
+import PatientPage from "./pages/question_list";
+import DetailPage from "./pages/question_details";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
@@ -16,11 +15,8 @@ function App() {
     <AppShell/>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<LoginPage />} />
-          <Route path="login" element={<LoginPage />} /> */}
           <Route path="/" element={<PatientPage />} />
-          <Route path="journal" element={<JournalPage />} />
-          <Route path="journalentry" element={<JournalEntry />} />
+          <Route path="detail" element={<DetailPage />} />
         </Routes>
       </BrowserRouter>
     </div>

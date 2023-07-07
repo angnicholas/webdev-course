@@ -186,14 +186,8 @@ export default function CustomPaginationActionsTable() {
             ).map((row) => (
               
               <TableRow key={row.id} style={{ textDecoration: 'none' }}>
-
-
                 <TableCell component="th" scope="row">
-                <Link to={"/journal"} state={{
-                    name: row.part, id: row.id
-                  }}>
                   {row.part}
-                  </Link>
                 </TableCell>
 
                 <TableCell style={{ width: 160 }} align="right">
@@ -205,7 +199,10 @@ export default function CustomPaginationActionsTable() {
                 </TableCell>
 
                 <TableCell style={{ width: 160 }} align="right">
-                  {row.number}
+                  <Link to={"/detail"} state={{
+                    id: row.id
+                  }}>{row.number}</Link>
+                  
                 </TableCell>
 
                 <TableCell style={{ width: 160 }} align="right">
