@@ -119,10 +119,13 @@ export default function CustomPaginationActionsTable() {
         const lastUpdateDate = lastUpdateDateTime.toDateString();
         final_array.push({
           'id':x['id'],
-          'name':x['display_name'],
-          'riskScore':Math.round((-x['average_sentiment']+1)*50),
-          'latestSentiment': Math.round((-x['latest_sentiment']+1)*50),
-          'lastUpdate':lastUpdateDate,
+          'part':x['part'],
+          'year':x['year'],
+          'section':x['section'],
+          'number':x['number'],
+          'course':x['course'],
+          'tags':x['tags'],
+          'hint':x['hint'],
         });
       });
 
@@ -131,7 +134,7 @@ export default function CustomPaginationActionsTable() {
       return final_array;
     }
 
-    getFromApi("dashboard/patient/list/", setContent, setLoading, resDataToContent);
+    getFromApi("question/", setContent, setLoading, resDataToContent);
     console.log(rows);    
   }, [])
 
@@ -165,10 +168,16 @@ export default function CustomPaginationActionsTable() {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
           <TableHead>
-              <TableCell>Patient</TableCell>
-              <TableCell align="right">Latest Risk Score</TableCell>
-              <TableCell align="right">Average Risk Score</TableCell>
-              <TableCell align="right">Last Journal Update</TableCell>
+            <TableRow>
+              <TableCell>Part</TableCell>
+              <TableCell>Year</TableCell>
+              <TableCell>Section</TableCell>
+              <TableCell>Number</TableCell>
+              <TableCell>Hint</TableCell>
+              <TableCell>Tags</TableCell>
+
+            </TableRow>
+              
           </TableHead>
           <TableBody>
             {(rowsPerPage > 0
@@ -176,31 +185,47 @@ export default function CustomPaginationActionsTable() {
               : rows
             ).map((row) => (
               
-              <TableRow key={row.name} style={{ textDecoration: 'none' }}>
+              <TableRow key={row.id} style={{ textDecoration: 'none' }}>
+
+
                 <TableCell component="th" scope="row">
                 <Link to={"/journal"} state={{
-                    name: row.name, id: row.id
+                    name: row.part, id: row.id
                   }}>
-                  {row.name}
+                  {row.part}
                   </Link>
                 </TableCell>
-                <TableCell style={{ width: 160, 
+
+                <TableCell style={{ width: 160 }} align="right">
+                  {row.year}
+                </TableCell>
+
+                <TableCell style={{ width: 160 }} align="right">
+                  {row.section}
+                </TableCell>
+
+                <TableCell style={{ width: 160 }} align="right">
+                  {row.number}
+                </TableCell>
+
+                <TableCell style={{ width: 160 }} align="right">
+                  {row.hint}
+                </TableCell>
+                
+                <TableCell style={{ width: 160 }} align="right">
+                  {row.tags}
+                </TableCell>
+
+
+                {/* Conditional Formatting can be done as such: */}
+
+                {/* <TableCell style={{ width: 160, 
                   color: `${row.latestSentiment > 75 ? 'red' : 'black'}`,
                   fontWeight: `${row.latestSentiment > 75 ? 'bold' : 'normal'}`,
                   }} align="right">
                   {row.latestSentiment}
-                </TableCell>
+                </TableCell> */}
 
-                <TableCell style={{ width: 160, 
-                  color: `${row.riskScore > 70 ? 'red' : 'black'}`,
-                  fontWeight: `${row.riskScore > 70 ? 'bold' : 'normal'}`,
-                  }} align="right">
-                  {row.riskScore}
-                </TableCell>
-
-                <TableCell style={{ width: 160 }} align="right">
-                  {row.lastUpdate}
-                </TableCell>
               </TableRow>
               
             ))}

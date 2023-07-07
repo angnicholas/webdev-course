@@ -19,3 +19,5 @@ Tbh I'm quite bad at frontend. But it's mostly just code the components in a str
 Then use Console to view what is happening (request traces etc.)
 
 Javascript is basically bloatware (Look at the size of node-packages!!!!!)
+
+Cors problem: https://stackoverflow.com/questions/22476273/no-access-control-allow-origin-header-is-present-on-the-requested-resource-i - need to modify backend to allow same origin

@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import React, { Component }  from 'react';
 import './App.css';
-import LoginPage from "./pages/login";
+// import LoginPage from "./pages/login";
 import PatientPage from "./pages/patientpage";
 import JournalPage from "./pages/journaloverview";
 import JournalEntry from "./pages/journalentry";
@@ -16,9 +16,9 @@ function App() {
     <AppShell/>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="patients" element={<PatientPage />} />
+          {/* <Route path="/" element={<LoginPage />} />
+          <Route path="login" element={<LoginPage />} /> */}
+          <Route path="/" element={<PatientPage />} />
           <Route path="journal" element={<JournalPage />} />
           <Route path="journalentry" element={<JournalEntry />} />
         </Routes>
