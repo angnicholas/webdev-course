@@ -9,8 +9,9 @@
 3. Client Server model of HTTP. One way of sending information is using a client-server model. The client initiates the communication by sending a request, and the server responds with a response.
 
 2. HTTP Request: 
-    - method (GET, PUT, POST)
+    - method / verb (GET, PUT, POST)
     - URL (http://example.org/test/a/b/c/)
+    - Headers (not v impt)
     - Payload.
     - ```Live Example: Postman, Python requests```
 

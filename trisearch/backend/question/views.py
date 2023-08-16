@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from rest_framework.generics import (
     GenericAPIView,
-    CreateAPIView,
-    ListAPIView,
-    RetrieveAPIView,
-    DestroyAPIView,
-    UpdateAPIView,
+    # CreateAPIView,
+    # ListAPIView,
+    # RetrieveAPIView,
+    # DestroyAPIView,
+    # UpdateAPIView,
 )
 from rest_framework.response import Response
 from rest_framework import status
@@ -15,11 +15,29 @@ from tag.models import Tag
 from .serializers import QuestionSerializer
 from django.core import serializers
 
+# 5 endpoints
+
+# CRUD -> 4 operations that you can do data
+
+# -> /question/
+# - create
+# - read everything
+
+# -> /question/2
+# - read 1 particular one
+# - modify 1 particular one
+# - delete 1 particular one
+
+
+
+
+
 # Endpoint consists of a URL + Verb.
 # We typically group the same URL under the same class.
 # Then each method in the class corresponds to each verb.
 
 class QuestionsGeneral(GenericAPIView): # For the "/" URL.
+    # Corresponds to the '/question/' URL
 
     # First, consider the GET method, getting all Questions.
 
@@ -38,15 +56,24 @@ class QuestionsGeneral(GenericAPIView): # For the "/" URL.
 
         # Which get parsed into different parts that can be accessed by us.
 
+        print('')
+        print('')
+        print('')
+
         print("We hit list questions!")
         print('This is the Request', request)
+        print('This is the Request HEADERS', request.headers)
+
         print('This is the Request data', request.data)
         print('This is the Request query params', request.query_params)
         print('These are the args', args)
         print('These are the kwargs', kwargs)
 
         print('Let us send a response!')
-        return Response("hello", status=status.HTTP_200_OK)
+
+        return Response([{"hello":4}, 6], status=status.HTTP_404_NOT_FOUND)
+    
+
     
     def get2(self, request, *args, **kwargs):
         # Now let's examine the response. A response is just some
@@ -55,6 +82,10 @@ class QuestionsGeneral(GenericAPIView): # For the "/" URL.
 
         queryset = Question.objects.filter(pk=1)
         print('Queryset is', queryset)
+
+        queryset = Question.objects.all()
+        print('Queryset is', queryset)
+
         return Response(queryset, status=status.HTTP_200_OK)
 
     def get3(self, request, *args, **kwargs):
@@ -73,12 +104,19 @@ class QuestionsGeneral(GenericAPIView): # For the "/" URL.
         # that is derived from the object we defined instead
         # giving additional functionality
 
-        queryset = Question.objects.filter(pk=1)
-        my_object = queryset[0]
-        serializer = QuestionSerializer(my_object)
+        queryset = Question.objects.filter(pk=1) # [question1]
+        my_object = queryset[0] #question1
+
+        serializer = QuestionSerializer(my_object) #serializer object -> 
         print('Serializer data', serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
+
+
+
+
+
+
     def get5(self, request, *args, **kwargs):
         # So now we can send groups of items over as well
 
@@ -120,7 +158,7 @@ class QuestionsGeneral(GenericAPIView): # For the "/" URL.
         return Response(serializer.data, status=status.HTTP_200_OK)
               
     def get(self, request, *args, **kwargs):
-        return self.get6(self, request, *args, **kwargs)
+        return self.get5(request, *args, **kwargs)
 
 
     # Now, creating objects is similarly straightforward.

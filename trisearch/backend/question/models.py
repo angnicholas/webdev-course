@@ -27,12 +27,14 @@ class Question(models.Model):
         max_length=2, 
         choices=PartOfPaper.choices,
     )
+    
     course = models.CharField(max_length=20)
     year = models.IntegerField()
     section = models.CharField(max_length=20)
 
     #Not sure how to handle examiner letter here:
-    number = models.CharField(max_length=20) 
+    number = models.CharField(max_length=20)
+    # examiner = models.CharField(max_length=100)
 
     hint = models.CharField(max_length=200)
     tags = models.ManyToManyField(to=Tag)
